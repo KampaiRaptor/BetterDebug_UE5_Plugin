@@ -5,7 +5,7 @@
 
 void UPrintUtils::BetterPrintString(const FString DebugInfo, const FString Debug, const FString Key, const FPrintSetting Settings)
 {
-	if (Settings.bShouldDisplay && bCategory_1 == true)
+	if (Settings.bShouldDisplay && UPrintUtils::BoolArray[Settings.DebugIndex])
 	{
 		const FString DisplayString = DebugInfo + ": " + Debug;
 		const FColor DisplayColor = Settings.Color.ToFColor(true);
@@ -22,7 +22,7 @@ void UPrintUtils::BetterPrintString(const FString DebugInfo, const FString Debug
 
 void UPrintUtils::PrintFloat(const FString DebugInfo, const float Debug, const FString Key, const bool bRoundFloat, const FPrintSetting Settings)
 {
-	if (Settings.bShouldDisplay && bCategory_1 == true)
+	if (Settings.bShouldDisplay && UPrintUtils::BoolArray[Settings.DebugIndex])
 	{
 		//Round or not
 		FString DisplayString = "";
@@ -45,4 +45,20 @@ void UPrintUtils::PrintFloat(const FString DebugInfo, const float Debug, const F
 		//Print in log
 		UE_LOG(LogTemp, Warning, TEXT("%s"), *DisplayString);
 	}
+}
+
+//TODO 
+void UPrintUtils::PrintStringArray(const FString DebugInfo, const TArray<FString> Array, const FString Key,
+	const FPrintSetting Settings)
+{
+	FString DisplayString = "";
+	for (int32 i = 0; i < Array.Num(); i++)
+	{
+		DisplayString += Array[i] + " ";
+	}
+	DisplayString = DebugInfo + ": " + DisplayString;
+	DisplayString.RemoveFromEnd(" ");
+
+	GEngine->AddOnScreenDebugMessage(-1, Settings.DisplayTime, FColor::Black, DisplayString, true, FVector2d(Settings.TextSize));
+
 }

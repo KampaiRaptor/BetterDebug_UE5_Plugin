@@ -41,7 +41,11 @@ class BETTERDEBUG_API UPrintUtils : public UBlueprintFunctionLibrary
 
 	UFUNCTION(BlueprintCallable, Category="Debug")
 	static void PrintFloat(const FString DebugInfo, const float Debug, const FString Key = "None", const bool bRoundFloat = false, const FPrintSetting Settings = FPrintSetting());
+
+	UFUNCTION(BlueprintCallable, Category="Debug")
+	static void PrintStringArray(const FString DebugInfo, const TArray<FString> Array, const FString Key = "None", const FPrintSetting Settings = FPrintSetting());
+
 	
 public:
-	static inline bool bCategory_1 = true; //TODO rework to array with Debug Index for if statement
+	static inline TArray<bool> BoolArray{true, false}; 
 };
