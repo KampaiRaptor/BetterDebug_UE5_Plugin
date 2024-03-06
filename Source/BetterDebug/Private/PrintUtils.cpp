@@ -17,26 +17,40 @@ void UPrintUtils::BetterPrintString(const FString DebugInfo, const FString Debug
 			TempKey = FCString::Atoi(*Key);
 		}
 		
+		//Print on screen
 		GEngine->AddOnScreenDebugMessage(TempKey, Settings.DisplayTime, DisplayColor, DisplayString, true, FVector2d(Settings.TextSize));
-
+		//Print in Log
 		UE_LOG(LogTemp, Warning, TEXT("%s"), *DisplayString);
 	}
 }
 
-void UPrintUtils::PrintFloat(const FString DebugInfo, const float Debug, const int32 FractionalNumbers,const FString Key, const FPrintSetting Settings)
+void UPrintUtils::PrintFloat(const FString DebugInfo, const float Debug, const FString Key, const bool bRoundFloat, const FPrintSetting Settings)
 {
-	const FString DisplayString = DebugInfo + ":" + FString::SanitizeFloat(Debug); //TODO add rounding float with max FractionalNumbers
-	const FColor DisplayColor = Settings.Color.ToFColor(true);
-
-	//Setup key to 0, and change only when Key input is not "None"
-	int32 TempKey = -1;
-	if (Key != "None")
+	if (Settings.bShouldDisplay && bCategory_1 == true)
 	{
-		TempKey = FCString::Atoi(*Key);
-	}
+		//Round or not
+		FString DisplayString = "";
+		if (bRoundFloat == true)
+		{
+			DisplayString = DebugInfo + ": " +  FString::SanitizeFloat(FMath::RoundToFloat(Debug));
+		}
+		else
+		{
+			DisplayString = FString::Printf(TEXT("%s:%.2f"), *DebugInfo, Debug);
+		}
 		
-	GEngine->AddOnScreenDebugMessage(TempKey, Settings.DisplayTime, DisplayColor, DisplayString, true, FVector2d(Settings.TextSize));
+		const FColor DisplayColor = Settings.Color.ToFColor(true);
 
-	UE_LOG(LogTemp, Warning, TEXT("%s"), *DisplayString);
+		//Setup key to 0, and change only when Key input is not "None"
+		int32 TempKey = -1;
+		if (Key != "None")
+		{
+			TempKey = FCString::Atoi(*Key);
+		}
+
+		//Print on screen
+		GEngine->AddOnScreenDebugMessage(TempKey, Settings.DisplayTime, DisplayColor, DisplayString, true, FVector2d(Settings.TextSize));
+		//Print in log
+		UE_LOG(LogTemp, Warning, TEXT("%s"), *DisplayString);
+	}
 }
-
