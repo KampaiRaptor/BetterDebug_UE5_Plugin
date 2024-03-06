@@ -11,11 +11,7 @@ void UPrintUtils::BetterPrintString(const FString DebugInfo, const FString Debug
 		const FColor DisplayColor = Settings.Color.ToFColor(true);
 
 		//Setup key to 0, and change only when Key input is not "None"
-		int32 TempKey = -1;
-		if (Key != "None")
-		{
-			TempKey = FCString::Atoi(*Key);
-		}
+		int32 const TempKey = (Key != "None") ? FCString::Atoi(*Key) : -1;
 		
 		//Print on screen
 		GEngine->AddOnScreenDebugMessage(TempKey, Settings.DisplayTime, DisplayColor, DisplayString, true, FVector2d(Settings.TextSize));
@@ -32,22 +28,18 @@ void UPrintUtils::PrintFloat(const FString DebugInfo, const float Debug, const F
 		FString DisplayString = "";
 		if (bRoundFloat == true)
 		{
-			DisplayString = DebugInfo + ": " +  FString::SanitizeFloat(FMath::RoundToFloat(Debug));
+			DisplayString = DebugInfo + " = " + FString::SanitizeFloat(FMath::RoundToFloat(Debug));
 		}
 		else
 		{
-			DisplayString = FString::Printf(TEXT("%s:%.2f"), *DebugInfo, Debug);
+			DisplayString = FString::Printf(TEXT("%s = %.2f"), *DebugInfo, Debug);
 		}
 		
 		const FColor DisplayColor = Settings.Color.ToFColor(true);
 
 		//Setup key to 0, and change only when Key input is not "None"
-		int32 TempKey = -1;
-		if (Key != "None")
-		{
-			TempKey = FCString::Atoi(*Key);
-		}
-
+		int32 const TempKey = (Key != "None") ? FCString::Atoi(*Key) : -1;
+		
 		//Print on screen
 		GEngine->AddOnScreenDebugMessage(TempKey, Settings.DisplayTime, DisplayColor, DisplayString, true, FVector2d(Settings.TextSize));
 		//Print in log
