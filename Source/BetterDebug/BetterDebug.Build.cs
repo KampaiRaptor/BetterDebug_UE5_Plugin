@@ -25,9 +25,7 @@ public class BetterDebug : ModuleRules
 		PublicDependencyModuleNames.AddRange(
 			new string[]
 			{
-				"Core", 
-				"Blutility", 
-				"UMG"
+				"Core"
 				// ... add other public dependencies that you statically link with here ...
 			}
 			);
@@ -40,7 +38,9 @@ public class BetterDebug : ModuleRules
 				"Engine",
 				"Slate",
 				"SlateCore",
-				"UMGEditor"
+				"UnrealEd",
+				"Blutility",
+				"UMG"
 				// ... add private dependencies that you statically link with here ...	
 			}
 			);

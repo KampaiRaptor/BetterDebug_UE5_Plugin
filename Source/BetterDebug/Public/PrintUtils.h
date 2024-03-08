@@ -47,5 +47,5 @@ class BETTERDEBUG_API UPrintUtils : public UBlueprintFunctionLibrary
 
 	
 public:
-	static inline TArray<bool> BoolArray{true, false}; 
+	static inline TArray<bool> BoolArray{false, false}; 
 };
