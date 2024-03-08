@@ -24,4 +24,8 @@ public:
 	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "YourCategory")
 	TArray<bool>& GetBoolArrayFromPrintUtils();
 
+	UFUNCTION(BlueprintCallable, Category= "Test")
+	bool SetBoolInArray(bool Value, int32 Index);
+	
+
 };

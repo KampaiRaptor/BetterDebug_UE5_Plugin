@@ -3,6 +3,7 @@
 
 #include "PrintUtils.h"
 
+// Print String
 void UPrintUtils::BetterPrintString(const FString DebugInfo, const FString Debug, const FString Key, const FPrintSetting Settings)
 {
 	if (Settings.bShouldDisplay && UPrintUtils::BoolArray[Settings.DebugIndex])
@@ -20,6 +21,7 @@ void UPrintUtils::BetterPrintString(const FString DebugInfo, const FString Debug
 	}
 }
 
+// Print Float
 void UPrintUtils::PrintFloat(const FString DebugInfo, const float Debug, const FString Key, const bool bRoundFloat, const FPrintSetting Settings)
 {
 	if (Settings.bShouldDisplay && UPrintUtils::BoolArray[Settings.DebugIndex])
