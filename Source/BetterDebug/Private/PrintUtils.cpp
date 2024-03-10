@@ -4,9 +4,9 @@
 #include "PrintUtils.h"
 
 // Print String
-void UPrintUtils::BetterPrintString(const FString DebugInfo, const FString Debug, const FString Key, const FPrintSetting Settings)
+void UPrintUtils::BetterPrintString(const FString DebugInfo, const FString Debug, const FString Key, const int DebugIndex, const FPrintSetting Settings)
 {
-	if (Settings.bShouldDisplay && UPrintUtils::BoolArray[Settings.DebugIndex])
+	if (Settings.bShouldDisplay && UPrintUtils::BoolArray[DebugIndex])
 	{
 		const FString DisplayString = DebugInfo + ": " + Debug;
 		const FColor DisplayColor = Settings.Color.ToFColor(true);
@@ -22,9 +22,9 @@ void UPrintUtils::BetterPrintString(const FString DebugInfo, const FString Debug
 }
 
 // Print Float
-void UPrintUtils::PrintFloat(const FString DebugInfo, const float Debug, const FString Key, const bool bRoundFloat, const FPrintSetting Settings)
+void UPrintUtils::PrintFloat(const FString DebugInfo, const float Debug, const FString Key, const bool bRoundFloat, const int DebugIndex, const FPrintSetting Settings)
 {
-	if (Settings.bShouldDisplay && UPrintUtils::BoolArray[Settings.DebugIndex])
+	if (Settings.bShouldDisplay && UPrintUtils::BoolArray[DebugIndex])
 	{
 		//Round or not
 		FString DisplayString = "";
@@ -50,13 +50,12 @@ void UPrintUtils::PrintFloat(const FString DebugInfo, const float Debug, const F
 }
 
 //TODO 
-void UPrintUtils::PrintStringArray(const FString DebugInfo, const TArray<FString> Array, const FString Key,
-	const FPrintSetting Settings)
+void UPrintUtils::PrintStringArray(const FString DebugInfo, const TArray<FString> Array, const FString Key, const int DebugIndex,const FPrintSetting Settings)
 {
 	FString DisplayString = "";
 	for (int32 i = 0; i < Array.Num(); i++)
 	{
-		DisplayString += Array[i] + " ";
+		DisplayString += Array[i] + " \n";
 	}
 	DisplayString = DebugInfo + ": " + DisplayString;
 	DisplayString.RemoveFromEnd(" ");
