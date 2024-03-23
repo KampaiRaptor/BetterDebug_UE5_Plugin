@@ -4,7 +4,6 @@
 
 #include "CoreMinimal.h"
 #include "EditorUtilityWidget.h"
-#include "PrintUtils.h"
 #include "PrintUtilWidget.generated.h"
 
 /**
@@ -22,7 +21,7 @@ public:
 	~UPrintUtilWidget();
 
 	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "YourCategory")
-	TArray<bool>& GetBoolArrayFromPrintUtils();
+	TArray<bool>& GetBoolArrayFromPrintUtils() const;
 
 	UFUNCTION(BlueprintCallable, Category= "Test")
 	bool SetBoolInArray(bool Value, int32 Index);

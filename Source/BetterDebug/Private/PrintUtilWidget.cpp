@@ -1,6 +1,6 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
-
+#include "PrintUtils.h"
 #include "PrintUtilWidget.h"
 
 //Constructor
@@ -14,7 +14,7 @@ UPrintUtilWidget::~UPrintUtilWidget()
 }
 
 //Get Bool array from PrintUtils Bp Library
-TArray<bool>& UPrintUtilWidget::GetBoolArrayFromPrintUtils()
+TArray<bool>& UPrintUtilWidget::GetBoolArrayFromPrintUtils() const
 {
 	return UPrintUtils::BoolArray;
 }
