@@ -1,7 +1,7 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
-#include "PrintUtils.h"
 #include "PrintUtilWidget.h"
+#include "PrintUtils.h"
 
 //Constructor
 UPrintUtilWidget::UPrintUtilWidget()
