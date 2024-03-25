@@ -47,18 +47,21 @@ void UPrintUtils::PrintFloat(const FString& DebugInfo, const float& Debug, const
 	}
 }
 
-//TODO debug key + conditions when to print
+//TODO debug key 
 void UPrintUtils::PrintStringArray(const FString& DebugInfo, const TArray<FString>& Array, const FString& Key, const int DebugIndex,const FPrintSetting Settings)
 {
-	FString DisplayString = "";
-	for (int32 i = 0; i < Array.Num(); i++)
+	if (Settings.bShouldDisplay && UPrintUtils::BoolArray[DebugIndex])
 	{
-		DisplayString += DebugInfo + " " + FString::FromInt(i) + ": " + Array[i] + + " \n";
-	}
-	//DisplayString = DebugInfo + ": " + DisplayString;
-	DisplayString.RemoveFromEnd(" ");
+		FString DisplayString = "";
+		for (int32 i = 0; i < Array.Num(); i++)
+		{
+			DisplayString += DebugInfo + " " + FString::FromInt(i) + ": " + Array[i] + + " \n";
+		}
+		//DisplayString = DebugInfo + ": " + DisplayString;
+		DisplayString.RemoveFromEnd(" ");
 
-	int32 const TempKey = (Key != "None") ? FCString::Atoi(*Key) : -1;
+		int32 const TempKey = (Key != "None") ? FCString::Atoi(*Key) : -1;
 	
-	GEngine->AddOnScreenDebugMessage(TempKey, Settings.DisplayTime, Settings.Color.ToFColor(true), DisplayString, true, FVector2d(Settings.TextSize));
+		GEngine->AddOnScreenDebugMessage(TempKey, Settings.DisplayTime, Settings.Color.ToFColor(true), DisplayString, true, FVector2d(Settings.TextSize));
+	}
 }
