@@ -31,3 +31,9 @@ bool UPrintUtilWidget::SetBoolInArray(bool Value, int32 Index)
 	}
 	return false;
 }
+
+//Set Text Scale Multiplayer
+void UPrintUtilWidget::SetTextScaleMultiplayer(float NewValue)
+{
+	UPrintUtils::TextScaleMultiplayer = NewValue;
+}

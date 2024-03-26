@@ -20,11 +20,14 @@ public:
 	UPrintUtilWidget();
 	~UPrintUtilWidget();
 
-	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "YourCategory")
+	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "WidgetDebugUtils")
 	TArray<bool>& GetBoolArrayFromPrintUtils() const;
 
-	UFUNCTION(BlueprintCallable, Category= "Test")
+	UFUNCTION(BlueprintCallable, Category= "WidgetDebugUtils")
 	bool SetBoolInArray(bool Value, int32 Index);
+
+	UFUNCTION(BlueprintCallable, Category= "WidgetDebugUtils")
+	void SetTextScaleMultiplayer(float NewValue);
 	
 
 };
