@@ -42,7 +42,7 @@ public:
 	static void PrintBool(const FString& DebugInfo, const bool& Value, const FString& Key = "None", const int DebugIndex = 0,  const FPrintSetting Settings = FPrintSetting());
 	
 	UFUNCTION(BlueprintCallable, Category="Debug")
-	static void PrintFloat(const FString& DebugInfo, const float& Debug, const FString& Key = "None", const bool& bRoundFloat = false, const int DebugIndex = 0, const FPrintSetting Settings = FPrintSetting());
+	static void PrintFloat(const FString& DebugInfo, const float& Debug, const FString& Key = "None", const bool bRoundFloat = false, const int DebugIndex = 0, const FPrintSetting Settings = FPrintSetting());
 
 	UFUNCTION(BlueprintCallable, Category="Debug")
 	static void PrintInt(const FString& DebugInfo, const int& Debug, const FString& Key = "None", const int DebugIndex = 0, const FPrintSetting Settings = FPrintSetting());

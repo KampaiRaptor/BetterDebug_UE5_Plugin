@@ -12,7 +12,7 @@ void UPrintUtils::BetterPrintString(const FString& DebugInfo, const FString& Deb
 		const FString DisplayString = DebugInfo + ": " + Debug;
 
 		//Setup key to 0, and change only when Key input is not "None"
-		int32 const TempKey = (Key != "None") ? FCString::Atoi(*Key) : -1;
+		int32 const TempKey = !Key.Equals(TEXT("None"), ESearchCase::IgnoreCase) ? static_cast<int32>(GetTypeHash(Key)) : -1;
 
 		//Print on screen
 		GEngine->AddOnScreenDebugMessage(TempKey, Settings.DisplayTime, Settings.Color.ToFColor(true), DisplayString, true, FVector2d(Settings.TextSize*TextScaleMultiplayer));
@@ -28,7 +28,7 @@ void UPrintUtils::PrintBool(const FString& DebugInfo, const bool& Value, const F
 	{
 		const FString DisplayString = (Value == true) ? DebugInfo + " = True" : DebugInfo + " = False";
 		//Setup key to 0, and change only when Key input is not "None"
-		int32 const TempKey = (Key != "None") ? FCString::Atoi(*Key) : -1;
+		int32 const TempKey = !Key.Equals(TEXT("None"), ESearchCase::IgnoreCase) ? static_cast<int32>(GetTypeHash(Key)) : -1;
 		
 		GEngine->AddOnScreenDebugMessage(TempKey, Settings.DisplayTime, Settings.Color.ToFColor(true), DisplayString, true, FVector2d(Settings.TextSize*TextScaleMultiplayer));
 		UE_LOG(LogTemp, Warning, TEXT("%s"), *DisplayString);
@@ -36,7 +36,7 @@ void UPrintUtils::PrintBool(const FString& DebugInfo, const bool& Value, const F
 }
 
 // Print Float
-void UPrintUtils::PrintFloat(const FString& DebugInfo, const float& Debug, const FString& Key, const bool& bRoundFloat, const int DebugIndex, const FPrintSetting Settings)
+void UPrintUtils::PrintFloat(const FString& DebugInfo, const float& Debug, const FString& Key, const bool bRoundFloat, const int DebugIndex, const FPrintSetting Settings)
 {
 	if (Settings.bShouldDisplay && UPrintUtils::BoolArray[DebugIndex])
 	{
@@ -51,7 +51,7 @@ void UPrintUtils::PrintFloat(const FString& DebugInfo, const float& Debug, const
 			DisplayString = FString::Printf(TEXT("%s = %.2f"), *DebugInfo, Debug);
 		}
 		
-		int32 const TempKey = (Key != "None") ? FCString::Atoi(*Key) : -1;
+		int32 const TempKey = !Key.Equals(TEXT("None"), ESearchCase::IgnoreCase) ? static_cast<int32>(GetTypeHash(Key)) : -1;
 		
 		GEngine->AddOnScreenDebugMessage(TempKey, Settings.DisplayTime, Settings.Color.ToFColor(true), DisplayString, true, FVector2d(Settings.TextSize*TextScaleMultiplayer));
 		UE_LOG(LogTemp, Warning, TEXT("%s"), *DisplayString);
@@ -64,7 +64,7 @@ void UPrintUtils::PrintInt(const FString& DebugInfo, const int& Debug, const FSt
 	{
 		const FString DisplayString = DebugInfo + " = " + FString::FromInt(Debug);
 		
-		int32 const TempKey = (Key != "None") ? FCString::Atoi(*Key) : -1;
+		int32 const TempKey = !Key.Equals(TEXT("None"), ESearchCase::IgnoreCase) ? static_cast<int32>(GetTypeHash(Key)) : -1;
 		
 		GEngine->AddOnScreenDebugMessage(TempKey, Settings.DisplayTime, Settings.Color.ToFColor(true), DisplayString, true, FVector2d(Settings.TextSize*TextScaleMultiplayer));
 		UE_LOG(LogTemp, Warning, TEXT("%s"), *DisplayString);
@@ -82,7 +82,7 @@ void UPrintUtils::PrintStringArray(const FString& DebugInfo, const TArray<FStrin
 		}
 		DisplayString.RemoveFromEnd(" ");
 
-		int32 const TempKey = (Key != "None") ? FCString::Atoi(*Key) : -1;
+		int32 const TempKey = !Key.Equals(TEXT("None"), ESearchCase::IgnoreCase) ? static_cast<int32>(GetTypeHash(Key)) : -1;
 	
 		GEngine->AddOnScreenDebugMessage(TempKey, Settings.DisplayTime, Settings.Color.ToFColor(true), DisplayString, true, FVector2d(Settings.TextSize*TextScaleMultiplayer));
 	}
@@ -110,7 +110,7 @@ void UPrintUtils::PrintTransform(const FString& DebugInfo, const FTransform& Tra
 		}
 		DisplayString.RemoveFromEnd(" ");
 
-		int32 const TempKey = (Key != "None") ? FCString::Atoi(*Key) : -1;
+		int32 const TempKey = !Key.Equals(TEXT("None"), ESearchCase::IgnoreCase) ? static_cast<int32>(GetTypeHash(Key)) : -1;
 	
 		GEngine->AddOnScreenDebugMessage(TempKey, Settings.DisplayTime, Settings.Color.ToFColor(true), DisplayString, true, FVector2d(Settings.TextSize*TextScaleMultiplayer));
 		UE_LOG(LogTemp, Warning, TEXT("%s"), *DisplayString);
@@ -137,7 +137,7 @@ void UPrintUtils::PrintVector(const FString& DebugInfo, const FVector& Vector, c
 		}
 		DisplayString.RemoveFromEnd(" ");
 
-		int32 const TempKey = (Key != "None") ? FCString::Atoi(*Key) : -1;
+		int32 const TempKey = !Key.Equals(TEXT("None"), ESearchCase::IgnoreCase) ? static_cast<int32>(GetTypeHash(Key)) : -1;
 	
 		GEngine->AddOnScreenDebugMessage(TempKey, Settings.DisplayTime, Settings.Color.ToFColor(true), DisplayString, true, FVector2d(Settings.TextSize*TextScaleMultiplayer));
 		UE_LOG(LogTemp, Warning, TEXT("%s"), *DisplayString);
@@ -164,7 +164,7 @@ void UPrintUtils::PrintRotator(const FString& DebugInfo, const FRotator& Rotator
 		}
 		DisplayString.RemoveFromEnd(" ");
 
-		int32 const TempKey = (Key != "None") ? FCString::Atoi(*Key) : -1;
+		int32 const TempKey = !Key.Equals(TEXT("None"), ESearchCase::IgnoreCase) ? static_cast<int32>(GetTypeHash(Key)) : -1;
 	
 		GEngine->AddOnScreenDebugMessage(TempKey, Settings.DisplayTime, Settings.Color.ToFColor(true), DisplayString, true, FVector2d(Settings.TextSize*TextScaleMultiplayer));
 		UE_LOG(LogTemp, Warning, TEXT("%s"), *DisplayString);
