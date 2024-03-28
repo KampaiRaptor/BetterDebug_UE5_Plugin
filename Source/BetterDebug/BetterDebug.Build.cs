@@ -1,4 +1,4 @@
-// Some copyright should be here...
+// Copyright 2024, KampaiRaptor, All Rights Reserved.
 
 using UnrealBuildTool;
 
