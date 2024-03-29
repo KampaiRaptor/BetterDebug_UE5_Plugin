@@ -1,7 +1,7 @@
 // Copyright 2024, KampaiRaptor, All Rights Reserved.
 
-#include "BetterDebug.h"
 
+#include "BetterDebug.h"
 #define LOCTEXT_NAMESPACE "FBetterDebugModule"
 
 void FBetterDebugModule::StartupModule()

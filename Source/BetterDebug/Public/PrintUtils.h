@@ -63,4 +63,3 @@ public:
 
 	static inline float TextScaleMultiplayer = 1.0; 
 };
-
