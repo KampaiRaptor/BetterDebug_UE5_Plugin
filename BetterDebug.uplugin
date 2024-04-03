@@ -15,12 +15,18 @@
 	"IsBetaVersion": false,
 	"IsExperimentalVersion": false,
 	"Installed": false,
-	"PlatformAllowList": [ "Win64", "Win32", "Mac", "IOS" ],
+	"PlatformAllowList": [ "Win64", "Win32", "Android" ],
+	"SupportedTargetPlatforms": [ "Win64", "Android" ],
 	"Modules": [
 		{
-			"Name": "BetterDebug",
-			"Type": "DeveloperTool",
+			"Name": "BetterDebugRuntime",
+			"Type": "Runtime",
 			"LoadingPhase": "Default"
+		},
+		{
+			"Name": "BetterDebugEditor",
+			"Type": "Editor",
+			"LoadingPhase": "PostEngineInit"
 		}
 	],
 	"Plugins": [

@@ -4,7 +4,7 @@
 
 #include "Modules/ModuleManager.h"
 
-class FBetterDebugModule : public IModuleInterface
+class FBetterDebugEditorModule : public IModuleInterface
 {
 public:
 

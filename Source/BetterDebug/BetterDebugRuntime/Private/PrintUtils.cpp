@@ -1,6 +1,8 @@
 // Copyright 2024, KampaiRaptor, All Rights Reserved.
 
 #include "PrintUtils.h"
+#include "Engine/Engine.h"
+
 
 // Print String
 void UPrintUtils::BetterPrintString(const FString& DebugInfo, const FString& Debug, const FString& Key, const int DebugIndex, const FPrintSetting Settings)

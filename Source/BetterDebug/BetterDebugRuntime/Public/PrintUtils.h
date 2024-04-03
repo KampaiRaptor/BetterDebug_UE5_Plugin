@@ -31,7 +31,7 @@ struct FPrintSetting
 };
 
 UCLASS()
-class BETTERDEBUG_API UPrintUtils : public UBlueprintFunctionLibrary
+class BETTERDEBUGRUNTIME_API UPrintUtils : public UBlueprintFunctionLibrary
 {
 	GENERATED_BODY()
 public:

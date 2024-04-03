@@ -2,9 +2,9 @@
 
 using UnrealBuildTool;
 
-public class BetterDebug : ModuleRules
+public class BetterDebugRuntime : ModuleRules
 {
-	public BetterDebug(ReadOnlyTargetRules Target) : base(Target)
+	public BetterDebugRuntime(ReadOnlyTargetRules Target) : base(Target)
 	{
 		PCHUsage = ModuleRules.PCHUsageMode.UseExplicitOrSharedPCHs;
         
@@ -42,17 +42,6 @@ public class BetterDebug : ModuleRules
 			}
 		);
 
-		if (Target.bBuildEditor)
-		{
-			PrivateDependencyModuleNames.AddRange(
-				new string[]
-				{
-					"Blutility" // Editor-only module
-					// Add other editor-only dependencies here
-				}
-			);
-		}
-        
         
 		DynamicallyLoadedModuleNames.AddRange(
 			new string[]
@@ -61,25 +50,5 @@ public class BetterDebug : ModuleRules
 			}
 		);
 		
-		if (Target.bBuildEditor)
-		{
-			PrivateDependencyModuleNames.AddRange(
-				new string[]
-				{
-					"Blutility" // Editor-only module
-					// Add other editor-only dependencies here
-				}
-			);
-		}
-
-		// Define WITH_EDITOR_WIDGET based on whether the target platform is Android
-		if (Target.Platform == UnrealTargetPlatform.Android)
-		{
-			PublicDefinitions.Add("WITH_EDITOR_WIDGET=0");
-		}
-		else
-		{
-			PublicDefinitions.Add("WITH_EDITOR_WIDGET=1");
-		}
 	}
 }

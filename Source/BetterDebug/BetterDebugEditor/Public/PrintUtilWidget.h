@@ -2,7 +2,6 @@
 
 #pragma once
 
-#if WITH_EDITOR_WIDGET
 
 #include "CoreMinimal.h"
 #include "EditorUtilityWidget.h"
@@ -14,7 +13,7 @@
 class UPrintUtils;
 
 UCLASS()
-class BETTERDEBUG_API UPrintUtilWidget : public UEditorUtilityWidget
+class BETTERDEBUGEDITOR_API UPrintUtilWidget : public UEditorUtilityWidget
 {
 	GENERATED_BODY()
 public:
@@ -32,6 +31,4 @@ public:
 	
 
 };
-
-#endif
 
