@@ -38,9 +38,7 @@ public class BetterDebug : ModuleRules
 				"Engine",
 				"Slate",
 				"SlateCore",
-				// "Blutility", // Moved inside the bBuildEditor check below
 				"UMG"
-				// ... add private dependencies that you statically link with here ...  
 			}
 		);
 
@@ -62,5 +60,26 @@ public class BetterDebug : ModuleRules
 				// ... add any modules that your module loads dynamically here ...
 			}
 		);
+		
+		if (Target.bBuildEditor)
+		{
+			PrivateDependencyModuleNames.AddRange(
+				new string[]
+				{
+					"Blutility" // Editor-only module
+					// Add other editor-only dependencies here
+				}
+			);
+		}
+
+		// Define WITH_EDITOR_WIDGET based on whether the target platform is Android
+		if (Target.Platform == UnrealTargetPlatform.Android)
+		{
+			PublicDefinitions.Add("WITH_EDITOR_WIDGET=0");
+		}
+		else
+		{
+			PublicDefinitions.Add("WITH_EDITOR_WIDGET=1");
+		}
 	}
 }

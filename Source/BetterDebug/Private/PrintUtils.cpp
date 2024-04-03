@@ -6,7 +6,7 @@
 void UPrintUtils::BetterPrintString(const FString& DebugInfo, const FString& Debug, const FString& Key, const int DebugIndex, const FPrintSetting Settings)
 {
 	//Display or not
-	if (Settings.bShouldDisplay && UPrintUtils::BoolArray[DebugIndex])
+	if (Settings.bShouldDisplay && UPrintUtils::BoolArray[FMath::Clamp(DebugIndex, 0, 4)]) //Lock to 4 categories for now
 	{
 		const FString DisplayString = DebugInfo + ": " + Debug;
 
@@ -23,7 +23,7 @@ void UPrintUtils::BetterPrintString(const FString& DebugInfo, const FString& Deb
 void UPrintUtils::PrintBool(const FString& DebugInfo, const bool& Value, const FString& Key, const int DebugIndex,
 	const FPrintSetting Settings)
 {
-	if (Settings.bShouldDisplay && UPrintUtils::BoolArray[DebugIndex])
+	if (Settings.bShouldDisplay && UPrintUtils::BoolArray[FMath::Clamp(DebugIndex, 0, 4)]) //Lock to 4 categories for now
 	{
 		const FString DisplayString = (Value == true) ? DebugInfo + " = True" : DebugInfo + " = False";
 		//Setup key to 0, and change only when Key input is not "None"
@@ -37,7 +37,7 @@ void UPrintUtils::PrintBool(const FString& DebugInfo, const bool& Value, const F
 // Print Float
 void UPrintUtils::PrintFloat(const FString& DebugInfo, const float& Debug, const FString& Key, const bool bRoundFloat, const int DebugIndex, const FPrintSetting Settings)
 {
-	if (Settings.bShouldDisplay && UPrintUtils::BoolArray[DebugIndex])
+	if (Settings.bShouldDisplay && UPrintUtils::BoolArray[FMath::Clamp(DebugIndex, 0, 4)]) //Lock to 4 categories for now
 	{
 		//Round or not
 		FString DisplayString = "";
@@ -59,7 +59,7 @@ void UPrintUtils::PrintFloat(const FString& DebugInfo, const float& Debug, const
 
 void UPrintUtils::PrintInt(const FString& DebugInfo, const int& Debug, const FString& Key, const int DebugIndex, const FPrintSetting Settings)
 {
-	if (Settings.bShouldDisplay && UPrintUtils::BoolArray[DebugIndex])
+	if (Settings.bShouldDisplay && UPrintUtils::BoolArray[FMath::Clamp(DebugIndex, 0, 4)]) //Lock to 4 categories for now
 	{
 		const FString DisplayString = DebugInfo + " = " + FString::FromInt(Debug);
 		
@@ -72,7 +72,7 @@ void UPrintUtils::PrintInt(const FString& DebugInfo, const int& Debug, const FSt
 
 void UPrintUtils::PrintStringArray(const FString& DebugInfo, const TArray<FString>& Array, const FString& Key, const int DebugIndex,const FPrintSetting Settings)
 {
-	if (Settings.bShouldDisplay && UPrintUtils::BoolArray[DebugIndex])
+	if (Settings.bShouldDisplay && UPrintUtils::BoolArray[FMath::Clamp(DebugIndex, 0, 4)]) //Lock to 4 categories for now
 	{
 		FString DisplayString = "";
 		for (int32 i = 0; i < Array.Num(); i++)
@@ -89,7 +89,7 @@ void UPrintUtils::PrintStringArray(const FString& DebugInfo, const TArray<FStrin
 
 void UPrintUtils::PrintTransform(const FString& DebugInfo, const FTransform& Transform, const bool bLocation, const bool bRotation, const bool bScale, const FString& Key, const int DebugIndex, const FPrintSetting Settings)
 {
-	if (Settings.bShouldDisplay && UPrintUtils::BoolArray[DebugIndex])
+	if (Settings.bShouldDisplay && UPrintUtils::BoolArray[FMath::Clamp(DebugIndex, 0, 4)]) //Lock to 4 categories for now
 	{
 		//Setup base string
 		FString DisplayString = DebugInfo + ": \n";
@@ -118,7 +118,7 @@ void UPrintUtils::PrintTransform(const FString& DebugInfo, const FTransform& Tra
 
 void UPrintUtils::PrintVector(const FString& DebugInfo, const FVector& Vector, const bool bX, const bool bY, const bool bZ, const FString& Key, const int DebugIndex, const FPrintSetting Settings)
 {
-	if (Settings.bShouldDisplay && UPrintUtils::BoolArray[DebugIndex])
+	if (Settings.bShouldDisplay && UPrintUtils::BoolArray[FMath::Clamp(DebugIndex, 0, 4)]) //Lock to 4 categories for now
 	{
 		FString DisplayString = DebugInfo + ":";
 
@@ -145,7 +145,7 @@ void UPrintUtils::PrintVector(const FString& DebugInfo, const FVector& Vector, c
 
 void UPrintUtils::PrintRotator(const FString& DebugInfo, const FRotator& Rotator, const bool bX_Roll, const bool bY_Pitch, const bool bZ_Yaw, const FString& Key, const int DebugIndex, const FPrintSetting Settings)
 {
-	if (Settings.bShouldDisplay && UPrintUtils::BoolArray[DebugIndex])
+	if (Settings.bShouldDisplay && UPrintUtils::BoolArray[FMath::Clamp(DebugIndex, 0, 4)]) //Lock to 4 categories for now
 	{
 		FString DisplayString = DebugInfo + ":";
 

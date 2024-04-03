@@ -9,17 +9,17 @@
 	"CreatedBy": "KampaiRaptor",
 	"CreatedByURL": "https://kampairaptor.com/",
 	"DocsURL": "https://docs.google.com/document/d/1z0oj0TdmtCj4BixBf1DbDnEVOvnQM3kryy_rTVh9skE/edit?usp=sharing",
-	"MarketplaceURL": "",
+	"MarketplaceURL": "com.epicgames.launcher://ue/marketplace/product/fc6e60a69f9d4125aee732a0f9dd86bf",
 	"SupportURL": "https://discord.gg/8y7kWZngqK",
 	"CanContainContent": true,
-	"IsBetaVersion": true,
-	"IsExperimentalVersion": true,
-	"Installed": true,
+	"IsBetaVersion": false,
+	"IsExperimentalVersion": false,
+	"Installed": false,
 	"PlatformAllowList": [ "Win64", "Win32", "Mac", "IOS" ],
 	"Modules": [
 		{
 			"Name": "BetterDebug",
-			"Type": "Runtime",
+			"Type": "DeveloperTool",
 			"LoadingPhase": "Default"
 		}
 	],
