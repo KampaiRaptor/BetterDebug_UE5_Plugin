@@ -4,6 +4,8 @@ Better Debug plugin will help you speed up debugging by making displaying inform
 
 We also made for you brand new editor utility, so you can easily adjust the size of the prints together with categories of what you want to print, so no more text spam on your screen! Display only the information you need, when you need it.
 
+You can also download BetterDebug from Epic marketplace:
+https://www.unrealengine.com/marketplace/slug/fc6e60a69f9d4125aee732a0f9dd86bf
 
 ## Showcase
 ![1](https://github.com/KampaiRaptor/BetterDebug/assets/120315901/b55975b0-e64f-4f53-bc68-c49bae6c65e0)
