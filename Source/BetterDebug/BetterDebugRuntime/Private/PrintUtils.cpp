@@ -8,38 +8,50 @@
 void UPrintUtils::BetterPrintString(const FString& DebugInfo, const FString& Debug, const FString& Key, const int DebugIndex, const FPrintSetting Settings)
 {
 	//Display or not
-	if (Settings.bShouldDisplay && UPrintUtils::BoolArray[FMath::Clamp(DebugIndex, 0, 4)]) //Lock to 4 categories for now
+	if (UPrintUtils::BoolArray[FMath::Clamp(DebugIndex, 0, 4)]) //Lock to 4 categories for now
 	{
 		const FString DisplayString = DebugInfo + ": " + Debug;
 
 		//Setup key to 0, and change only when Key input is not "None"
 		int32 const TempKey = !Key.Equals(TEXT("None"), ESearchCase::IgnoreCase) ? static_cast<int32>(GetTypeHash(Key)) : -1;
 
-		//Print on screen
-		GEngine->AddOnScreenDebugMessage(TempKey, Settings.DisplayTime, Settings.Color.ToFColor(true), DisplayString, true, FVector2d(Settings.TextSize*TextScaleMultiplayer));
-		//Print in Log
-		UE_LOG(LogTemp, Warning, TEXT("%s"), *DisplayString);
+		if (Settings.bViewport && bGlobalViewport)
+		{
+			GEngine->AddOnScreenDebugMessage(TempKey, Settings.DisplayTime, Settings.Color.ToFColor(true), DisplayString, true, FVector2d(Settings.TextSize*TextScaleMultiplayer));
+		}
+		
+		if (Settings.bLOG && bGlobalLOG)
+		{
+			UE_LOG(LogTemp, Warning, TEXT("%s"), *DisplayString);
+		}
 	}
 }
 
 void UPrintUtils::PrintBool(const FString& DebugInfo, const bool& Value, const FString& Key, const int DebugIndex,
 	const FPrintSetting Settings)
 {
-	if (Settings.bShouldDisplay && UPrintUtils::BoolArray[FMath::Clamp(DebugIndex, 0, 4)]) //Lock to 4 categories for now
+	if (UPrintUtils::BoolArray[FMath::Clamp(DebugIndex, 0, 4)]) //Lock to 4 categories for now
 	{
 		const FString DisplayString = (Value == true) ? DebugInfo + " = True" : DebugInfo + " = False";
 		//Setup key to 0, and change only when Key input is not "None"
 		int32 const TempKey = !Key.Equals(TEXT("None"), ESearchCase::IgnoreCase) ? static_cast<int32>(GetTypeHash(Key)) : -1;
-		
-		GEngine->AddOnScreenDebugMessage(TempKey, Settings.DisplayTime, Settings.Color.ToFColor(true), DisplayString, true, FVector2d(Settings.TextSize*TextScaleMultiplayer));
-		UE_LOG(LogTemp, Warning, TEXT("%s"), *DisplayString);
+
+		if (Settings.bViewport && bGlobalViewport)
+		{
+			GEngine->AddOnScreenDebugMessage(TempKey, Settings.DisplayTime, Settings.Color.ToFColor(true), DisplayString, true, FVector2d(Settings.TextSize*TextScaleMultiplayer));
+		}
+
+		if (Settings.bLOG && bGlobalLOG)
+		{
+			UE_LOG(LogTemp, Warning, TEXT("%s"), *DisplayString);
+		}
 	}
 }
 
 // Print Float
 void UPrintUtils::PrintFloat(const FString& DebugInfo, const float& Debug, const FString& Key, const bool bRoundFloat, const int DebugIndex, const FPrintSetting Settings)
 {
-	if (Settings.bShouldDisplay && UPrintUtils::BoolArray[FMath::Clamp(DebugIndex, 0, 4)]) //Lock to 4 categories for now
+	if (UPrintUtils::BoolArray[FMath::Clamp(DebugIndex, 0, 4)]) //Lock to 4 categories for now
 	{
 		//Round or not
 		FString DisplayString = "";
@@ -53,28 +65,42 @@ void UPrintUtils::PrintFloat(const FString& DebugInfo, const float& Debug, const
 		}
 		
 		int32 const TempKey = !Key.Equals(TEXT("None"), ESearchCase::IgnoreCase) ? static_cast<int32>(GetTypeHash(Key)) : -1;
-		
-		GEngine->AddOnScreenDebugMessage(TempKey, Settings.DisplayTime, Settings.Color.ToFColor(true), DisplayString, true, FVector2d(Settings.TextSize*TextScaleMultiplayer));
-		UE_LOG(LogTemp, Warning, TEXT("%s"), *DisplayString);
+
+		if (Settings.bViewport && bGlobalViewport)
+		{
+			GEngine->AddOnScreenDebugMessage(TempKey, Settings.DisplayTime, Settings.Color.ToFColor(true), DisplayString, true, FVector2d(Settings.TextSize*TextScaleMultiplayer));
+		}
+
+		if (Settings.bLOG && bGlobalLOG)
+		{
+			UE_LOG(LogTemp, Warning, TEXT("%s"), *DisplayString);
+		}
 	}
 }
 
 void UPrintUtils::PrintInt(const FString& DebugInfo, const int& Debug, const FString& Key, const int DebugIndex, const FPrintSetting Settings)
 {
-	if (Settings.bShouldDisplay && UPrintUtils::BoolArray[FMath::Clamp(DebugIndex, 0, 4)]) //Lock to 4 categories for now
+	if (UPrintUtils::BoolArray[FMath::Clamp(DebugIndex, 0, 4)]) //Lock to 4 categories for now
 	{
 		const FString DisplayString = DebugInfo + " = " + FString::FromInt(Debug);
 		
 		int32 const TempKey = !Key.Equals(TEXT("None"), ESearchCase::IgnoreCase) ? static_cast<int32>(GetTypeHash(Key)) : -1;
-		
-		GEngine->AddOnScreenDebugMessage(TempKey, Settings.DisplayTime, Settings.Color.ToFColor(true), DisplayString, true, FVector2d(Settings.TextSize*TextScaleMultiplayer));
-		UE_LOG(LogTemp, Warning, TEXT("%s"), *DisplayString);
+
+		if (Settings.bViewport && bGlobalViewport)
+		{
+			GEngine->AddOnScreenDebugMessage(TempKey, Settings.DisplayTime, Settings.Color.ToFColor(true), DisplayString, true, FVector2d(Settings.TextSize*TextScaleMultiplayer));
+		}
+
+		if (Settings.bLOG && bGlobalLOG)
+		{
+			UE_LOG(LogTemp, Warning, TEXT("%s"), *DisplayString);
+		}
 	}
 }
 
 void UPrintUtils::PrintStringArray(const FString& DebugInfo, const TArray<FString>& Array, const FString& Key, const int DebugIndex,const FPrintSetting Settings)
 {
-	if (Settings.bShouldDisplay && UPrintUtils::BoolArray[FMath::Clamp(DebugIndex, 0, 4)]) //Lock to 4 categories for now
+	if (UPrintUtils::BoolArray[FMath::Clamp(DebugIndex, 0, 4)]) //Lock to 4 categories for now
 	{
 		FString DisplayString = "";
 		for (int32 i = 0; i < Array.Num(); i++)
@@ -84,14 +110,21 @@ void UPrintUtils::PrintStringArray(const FString& DebugInfo, const TArray<FStrin
 		DisplayString.RemoveFromEnd(" ");
 
 		int32 const TempKey = !Key.Equals(TEXT("None"), ESearchCase::IgnoreCase) ? static_cast<int32>(GetTypeHash(Key)) : -1;
-	
-		GEngine->AddOnScreenDebugMessage(TempKey, Settings.DisplayTime, Settings.Color.ToFColor(true), DisplayString, true, FVector2d(Settings.TextSize*TextScaleMultiplayer));
-	}
+
+		if (Settings.bViewport && bGlobalViewport)
+		{
+			GEngine->AddOnScreenDebugMessage(TempKey, Settings.DisplayTime, Settings.Color.ToFColor(true), DisplayString, true, FVector2d(Settings.TextSize*TextScaleMultiplayer));
+		}
+
+		if (Settings.bLOG && bGlobalLOG)
+		{
+			UE_LOG(LogTemp, Warning, TEXT("%s"), *DisplayString);
+		}}
 }
 
 void UPrintUtils::PrintTransform(const FString& DebugInfo, const FTransform& Transform, const bool bLocation, const bool bRotation, const bool bScale, const FString& Key, const int DebugIndex, const FPrintSetting Settings)
 {
-	if (Settings.bShouldDisplay && UPrintUtils::BoolArray[FMath::Clamp(DebugIndex, 0, 4)]) //Lock to 4 categories for now
+	if (UPrintUtils::BoolArray[FMath::Clamp(DebugIndex, 0, 4)]) //Lock to 4 categories for now
 	{
 		//Setup base string
 		FString DisplayString = DebugInfo + ": \n";
@@ -112,15 +145,22 @@ void UPrintUtils::PrintTransform(const FString& DebugInfo, const FTransform& Tra
 		DisplayString.RemoveFromEnd(" ");
 
 		int32 const TempKey = !Key.Equals(TEXT("None"), ESearchCase::IgnoreCase) ? static_cast<int32>(GetTypeHash(Key)) : -1;
-	
-		GEngine->AddOnScreenDebugMessage(TempKey, Settings.DisplayTime, Settings.Color.ToFColor(true), DisplayString, true, FVector2d(Settings.TextSize*TextScaleMultiplayer));
-		UE_LOG(LogTemp, Warning, TEXT("%s"), *DisplayString);
+
+		if (Settings.bViewport && bGlobalViewport)
+		{
+			GEngine->AddOnScreenDebugMessage(TempKey, Settings.DisplayTime, Settings.Color.ToFColor(true), DisplayString, true, FVector2d(Settings.TextSize*TextScaleMultiplayer));
+		}
+
+		if (Settings.bLOG && bGlobalLOG)
+		{
+			UE_LOG(LogTemp, Warning, TEXT("%s"), *DisplayString);
+		}
 	}
 }
 
 void UPrintUtils::PrintVector(const FString& DebugInfo, const FVector& Vector, const bool bX, const bool bY, const bool bZ, const FString& Key, const int DebugIndex, const FPrintSetting Settings)
 {
-	if (Settings.bShouldDisplay && UPrintUtils::BoolArray[FMath::Clamp(DebugIndex, 0, 4)]) //Lock to 4 categories for now
+	if (UPrintUtils::BoolArray[FMath::Clamp(DebugIndex, 0, 4)]) //Lock to 4 categories for now
 	{
 		FString DisplayString = DebugInfo + ":";
 
@@ -139,15 +179,22 @@ void UPrintUtils::PrintVector(const FString& DebugInfo, const FVector& Vector, c
 		DisplayString.RemoveFromEnd(" ");
 
 		int32 const TempKey = !Key.Equals(TEXT("None"), ESearchCase::IgnoreCase) ? static_cast<int32>(GetTypeHash(Key)) : -1;
-	
-		GEngine->AddOnScreenDebugMessage(TempKey, Settings.DisplayTime, Settings.Color.ToFColor(true), DisplayString, true, FVector2d(Settings.TextSize*TextScaleMultiplayer));
-		UE_LOG(LogTemp, Warning, TEXT("%s"), *DisplayString);
+
+		if (Settings.bViewport && bGlobalViewport)
+		{
+			GEngine->AddOnScreenDebugMessage(TempKey, Settings.DisplayTime, Settings.Color.ToFColor(true), DisplayString, true, FVector2d(Settings.TextSize*TextScaleMultiplayer));
+		}
+		
+		if (Settings.bLOG && bGlobalLOG)
+		{
+			UE_LOG(LogTemp, Warning, TEXT("%s"), *DisplayString);
+		}
 	}
 }
 
 void UPrintUtils::PrintRotator(const FString& DebugInfo, const FRotator& Rotator, const bool bX_Roll, const bool bY_Pitch, const bool bZ_Yaw, const FString& Key, const int DebugIndex, const FPrintSetting Settings)
 {
-	if (Settings.bShouldDisplay && UPrintUtils::BoolArray[FMath::Clamp(DebugIndex, 0, 4)]) //Lock to 4 categories for now
+	if (UPrintUtils::BoolArray[FMath::Clamp(DebugIndex, 0, 4)]) //Lock to 4 categories for now
 	{
 		FString DisplayString = DebugInfo + ":";
 
@@ -166,8 +213,15 @@ void UPrintUtils::PrintRotator(const FString& DebugInfo, const FRotator& Rotator
 		DisplayString.RemoveFromEnd(" ");
 
 		int32 const TempKey = !Key.Equals(TEXT("None"), ESearchCase::IgnoreCase) ? static_cast<int32>(GetTypeHash(Key)) : -1;
-	
-		GEngine->AddOnScreenDebugMessage(TempKey, Settings.DisplayTime, Settings.Color.ToFColor(true), DisplayString, true, FVector2d(Settings.TextSize*TextScaleMultiplayer));
-		UE_LOG(LogTemp, Warning, TEXT("%s"), *DisplayString);
+
+		if (Settings.bViewport && bGlobalViewport)
+		{
+			GEngine->AddOnScreenDebugMessage(TempKey, Settings.DisplayTime, Settings.Color.ToFColor(true), DisplayString, true, FVector2d(Settings.TextSize*TextScaleMultiplayer));
+		}
+
+		if (Settings.bLOG && bGlobalLOG)
+		{
+			UE_LOG(LogTemp, Warning, TEXT("%s"), *DisplayString);
+		}
 	}
 }

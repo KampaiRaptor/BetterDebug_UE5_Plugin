@@ -19,6 +19,14 @@ TArray<bool>& UPrintUtilWidget::GetBoolArrayFromPrintUtils() const
 	return UPrintUtils::BoolArray;
 }
 
+FDefaultPrintSetting UPrintUtilWidget::GetDefaultSetting()
+{
+	FDefaultPrintSetting Settings;
+	Settings.GlobalViewport = UPrintUtils::bGlobalViewport;
+	Settings.GlobalLOG = UPrintUtils::bGlobalLOG;
+	return Settings;
+}
+
 //Set bool in array
 bool UPrintUtilWidget::SetBoolInArray(bool Value, int32 Index)
 {
@@ -36,4 +44,14 @@ bool UPrintUtilWidget::SetBoolInArray(bool Value, int32 Index)
 void UPrintUtilWidget::SetTextScaleMultiplayer(float NewValue)
 {
 	UPrintUtils::TextScaleMultiplayer = NewValue;
+}
+
+void UPrintUtilWidget::SetGlobalBoolViewport(bool NewValue)
+{
+	UPrintUtils::bGlobalViewport = NewValue;
+}
+
+void UPrintUtilWidget::SetGlobalBoolLOG(bool NewValue)
+{
+	UPrintUtils::bGlobalLOG = NewValue;
 }

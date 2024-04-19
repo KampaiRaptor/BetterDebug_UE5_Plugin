@@ -10,6 +10,19 @@
 /**
  * 
  */
+
+USTRUCT(BlueprintType)
+struct FDefaultPrintSetting
+{
+	GENERATED_BODY()
+
+	UPROPERTY(BlueprintReadOnly)
+	bool GlobalViewport;
+
+	UPROPERTY(BlueprintReadOnly)
+	bool GlobalLOG;
+};
+
 class UPrintUtils;
 
 UCLASS()
@@ -23,12 +36,21 @@ public:
 	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "WidgetDebugUtils")
 	TArray<bool>& GetBoolArrayFromPrintUtils() const;
 
-	UFUNCTION(BlueprintCallable, Category= "WidgetDebugUtils")
+	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "WidgetDebugUtils")
+	FDefaultPrintSetting GetDefaultSetting ();
+
+
+	UFUNCTION(BlueprintCallable, Category = "WidgetDebugUtils")
 	bool SetBoolInArray(bool Value, int32 Index);
 
-	UFUNCTION(BlueprintCallable, Category= "WidgetDebugUtils")
+	UFUNCTION(BlueprintCallable, Category = "WidgetDebugUtils")
 	void SetTextScaleMultiplayer(float NewValue);
-	
 
+	UFUNCTION(BlueprintCallable, Category = "WidgetDebugUtils")
+	void SetGlobalBoolViewport(bool NewValue);
+
+	UFUNCTION(BlueprintCallable, Category = "WidgetDebugUtils")
+	void SetGlobalBoolLOG(bool NewValue);
+	
 };
 

@@ -23,7 +23,10 @@ struct FPrintSetting
 	float DisplayTime = 5.0f;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "PrintSetting")
-	bool bShouldDisplay = true;
+	bool bViewport = true;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "PrintSetting")
+	bool bLOG = true;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "PrintSetting")
 	float TextSize = 1.2f;
@@ -61,5 +64,8 @@ public:
 	
 	static inline TArray<bool> BoolArray{true, true, true, true, true};
 
-	static inline float TextScaleMultiplayer = 1.0; 
+	static inline float TextScaleMultiplayer = 1.0;
+
+	static inline bool bGlobalViewport = true;
+	static inline bool bGlobalLOG = true;
 };
