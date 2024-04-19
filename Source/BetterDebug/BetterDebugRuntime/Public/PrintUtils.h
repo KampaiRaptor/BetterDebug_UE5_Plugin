@@ -68,4 +68,5 @@ public:
 
 	static inline bool bGlobalViewport = true;
 	static inline bool bGlobalLOG = true;
+	
 };
