@@ -1,11 +1,13 @@
 // Copyright 2024, KampaiRaptor, All Rights Reserved.
 
 #include "PrintUtils.h"
+#include "BetterDebug_HUD.h"
 #include "Engine/Engine.h"
+#include "Kismet/GameplayStatics.h"
 
 
 // Print String
-void UPrintUtils::BetterPrintString(const FString& DebugInfo, const FString& Debug, const FString& Key, const int DebugIndex, const FPrintSetting Settings)
+void UPrintUtils::BetterPrintString(UObject* WorldContextObject, const FString& DebugInfo, const FString& Debug, const FString& Key, const int DebugIndex, const FPrintSetting Settings)
 {
 	//Display or not
 	if (UPrintUtils::BoolArray[FMath::Clamp(DebugIndex, 0, 4)]) //Lock to 4 categories for now
@@ -23,6 +25,28 @@ void UPrintUtils::BetterPrintString(const FString& DebugInfo, const FString& Deb
 		if (Settings.bLOG && bGlobalLOG)
 		{
 			UE_LOG(LogTemp, Warning, TEXT("%s"), *DisplayString);
+		}
+
+		if (WorldContext)
+		{
+			APlayerController* PlayerController = WorldContext->GetFirstPlayerController();
+			if (PlayerController)
+			{
+				ABetterDebug_HUD* HUD = Cast<ABetterDebug_HUD>(PlayerController->GetHUD());
+				if (HUD != nullptr)
+				{
+					// Now call AddMessage on the HUD instance
+					FHUDMessage HUDMessage;
+					HUDMessage.Message = DisplayString;
+					HUDMessage.Color = Settings.Color.ToFColor(true);
+					HUDMessage.Position = PositionOnHUD;
+					HUDMessage.TimeToDisplay = Settings.DisplayTime;
+					HUDMessage.TextScale = Settings.TextSize * Settings.TextSize*TextScaleMultiplayer; 
+					HUDMessage.TimeRemaining = Settings.DisplayTime;
+			
+					HUD->AddMessage(Key, HUDMessage);
+				}
+			}
 		}
 	}
 }

@@ -51,6 +51,9 @@ public:
 
 	UFUNCTION(BlueprintCallable, Category = "WidgetDebugUtils")
 	void SetGlobalBoolLOG(bool NewValue);
+
+	UFUNCTION(BlueprintCallable, Category = "WidgetDebugUtils")
+	void PositionOnHUD(FVector2D NewPosition);
 	
 };
 

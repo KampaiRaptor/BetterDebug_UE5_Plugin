@@ -38,7 +38,7 @@ public class BetterDebugRuntime : ModuleRules
 				"Engine",
 				"Slate",
 				"SlateCore",
-				"UMG"
+				"UMG", 
 			}
 		);
 

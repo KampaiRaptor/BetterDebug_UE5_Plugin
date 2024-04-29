@@ -55,3 +55,8 @@ void UPrintUtilWidget::SetGlobalBoolLOG(bool NewValue)
 {
 	UPrintUtils::bGlobalLOG = NewValue;
 }
+
+void UPrintUtilWidget::PositionOnHUD(FVector2D NewPosition)
+{
+	UPrintUtils::PositionOnHUD = NewPosition;
+}
