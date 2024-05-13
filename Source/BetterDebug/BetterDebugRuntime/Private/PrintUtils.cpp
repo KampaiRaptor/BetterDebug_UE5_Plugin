@@ -7,35 +7,23 @@
 
 
 // Print String
-void UPrintUtils::BetterPrintString(UObject* WorldContextObject, const FString& DebugInfo, const FString& Debug, const FString& Key, const int DebugIndex, const FPrintSetting Settings)
+void UPrintUtils::BetterPrintString(const FString& DebugInfo, const FString& Debug, const FString& Key, const int DebugIndex, const FPrintSetting Settings)
 {
 	//Display or not
 	if (UPrintUtils::BoolArray[FMath::Clamp(DebugIndex, 0, 4)]) //Lock to 4 categories for now
 	{
 		const FString DisplayString = DebugInfo + ": " + Debug;
 
-		//Setup key to 0, and change only when Key input is not "None"
-		int32 const TempKey = !Key.Equals(TEXT("None"), ESearchCase::IgnoreCase) ? static_cast<int32>(GetTypeHash(Key)) : -1;
-
-		if (Settings.bViewport && bGlobalViewport)
-		{
-			GEngine->AddOnScreenDebugMessage(TempKey, Settings.DisplayTime, Settings.Color.ToFColor(true), DisplayString, true, FVector2d(Settings.TextSize*TextScaleMultiplayer));
-		}
-		
-		if (Settings.bLOG && bGlobalLOG)
-		{
-			UE_LOG(LogTemp, Warning, TEXT("%s"), *DisplayString);
-		}
-
+		//Check if HUD is setup, print to it if yes
 		if (WorldContext)
 		{
-			APlayerController* PlayerController = WorldContext->GetFirstPlayerController();
-			if (PlayerController)
+			FString const TempKey = !Key.Equals(TEXT("None"), ESearchCase::IgnoreCase) ? FString::FromInt(static_cast<int32>(GetTypeHash(Key))): FString::FromInt(FDateTime::Now().GetTicks());
+			
+			if (const APlayerController* PlayerController = WorldContext->GetFirstPlayerController())
 			{
 				ABetterDebug_HUD* HUD = Cast<ABetterDebug_HUD>(PlayerController->GetHUD());
 				if (HUD != nullptr)
 				{
-					// Now call AddMessage on the HUD instance
 					FHUDMessage HUDMessage;
 					HUDMessage.Message = DisplayString;
 					HUDMessage.Color = Settings.Color.ToFColor(true);
@@ -44,9 +32,25 @@ void UPrintUtils::BetterPrintString(UObject* WorldContextObject, const FString& 
 					HUDMessage.TextScale = Settings.TextSize * Settings.TextSize*TextScaleMultiplayer; 
 					HUDMessage.TimeRemaining = Settings.DisplayTime;
 			
-					HUD->AddMessage(Key, HUDMessage);
+					HUD->AddMessage(TempKey, HUDMessage);
 				}
 			}
+		}
+		//Or print on regular screen
+		else
+		{
+			int32 const TempKey = !Key.Equals(TEXT("None"), ESearchCase::IgnoreCase) ? static_cast<int32>(GetTypeHash(Key)) : -1;
+
+			if (Settings.bViewport && bGlobalViewport)
+			{
+				GEngine->AddOnScreenDebugMessage(TempKey, Settings.DisplayTime, Settings.Color.ToFColor(true), DisplayString, true, FVector2d(Settings.TextSize*TextScaleMultiplayer));
+			}
+		}
+		
+		//Print to LOG
+		if (Settings.bLOG && bGlobalLOG)
+		{
+			UE_LOG(LogTemp, Warning, TEXT("%s"), *DisplayString);
 		}
 	}
 }

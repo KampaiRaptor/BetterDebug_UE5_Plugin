@@ -2,6 +2,8 @@
 
 
 #include "BetterDebug_HUD.h"
+#include "Engine/World.h"
+#include "Engine/Engine.h"
 #include "PrintUtils.h"
 
 ABetterDebug_HUD::ABetterDebug_HUD()
@@ -19,7 +21,8 @@ void ABetterDebug_HUD::DrawHUD()
 	
 	float DeltaTime = GetWorld()->GetDeltaSeconds();
 
-	for (auto It = Messages.CreateIterator(); It; ++It)
+	int Index = -1;
+	for (auto It = Messages.CreateIterator(); It; ++It, ++Index)
 	{
 		FHUDMessage& Message = It.Value();
 		Message.TimeRemaining -= DeltaTime;
@@ -30,7 +33,7 @@ void ABetterDebug_HUD::DrawHUD()
 		}
 		else
 		{
-			DrawText(Message.Message, Message.Color, Message.Position.X, Message.Position.Y, GEngine->GetSmallFont(), Message.TextScale, true);
+			DrawText(Message.Message, Message.Color, Message.Position.X, Message.Position.Y + Index * 15, GEngine->GetSmallFont(), Message.TextScale, true);
 		}
 	}
 }

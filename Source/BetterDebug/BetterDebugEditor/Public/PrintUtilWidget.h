@@ -16,10 +16,10 @@ struct FDefaultPrintSetting
 {
 	GENERATED_BODY()
 
-	UPROPERTY(BlueprintReadOnly)
+	UPROPERTY(BlueprintReadOnly, Category = "PrintSetting")
 	bool GlobalViewport;
 
-	UPROPERTY(BlueprintReadOnly)
+	UPROPERTY(BlueprintReadOnly, Category = "PrintSetting")
 	bool GlobalLOG;
 };
 

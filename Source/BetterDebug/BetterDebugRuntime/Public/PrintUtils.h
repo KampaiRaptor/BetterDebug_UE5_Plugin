@@ -9,7 +9,6 @@
 /**
  * 
  */
-class FVariant;
 
 USTRUCT(BlueprintType)
 struct FPrintSetting
@@ -39,7 +38,7 @@ class BETTERDEBUGRUNTIME_API UPrintUtils : public UBlueprintFunctionLibrary
 	GENERATED_BODY()
 public:
 	UFUNCTION(BlueprintCallable, Category="Debug") 
-	static void BetterPrintString(UObject* WorldContextObject,const FString& DebugInfo, const FString& Debug, const FString& Key = "None", const int DebugIndex = 0,  const FPrintSetting Settings = FPrintSetting());
+	static void BetterPrintString(const FString& DebugInfo, const FString& Debug, const FString& Key = "None", const int DebugIndex = 0,  const FPrintSetting Settings = FPrintSetting());
 
 	UFUNCTION(BlueprintCallable, Category="Debug") 
 	static void PrintBool(const FString& DebugInfo, const bool& Value, const FString& Key = "None", const int DebugIndex = 0,  const FPrintSetting Settings = FPrintSetting());
@@ -64,7 +63,7 @@ public:
 	
 	static inline TArray<bool> BoolArray{true, true, true, true, true};
 
-	static inline UWorld* UPrintUtils::WorldContext = nullptr;
+	static inline UWorld* WorldContext = nullptr;
 	
 	static inline float TextScaleMultiplayer = 1.0;
 	static inline FVector2D PositionOnHUD = FVector2D(0.0f, 0.0f);

@@ -2,6 +2,8 @@
 
 #include "PrintUtilWidget.h"
 #include "PrintUtils.h"
+#include "BetterDebug_HUD.h"
+
 
 //Constructor
 UPrintUtilWidget::UPrintUtilWidget()
@@ -60,3 +62,4 @@ void UPrintUtilWidget::PositionOnHUD(FVector2D NewPosition)
 {
 	UPrintUtils::PositionOnHUD = NewPosition;
 }
+
