@@ -60,6 +60,15 @@ public:
 
 	UFUNCTION(BlueprintCallable, Category="Debug")
 	static void PrintRotator(const FString& DebugInfo, const FRotator& Rotator, const bool bX_Roll = true, const bool bY_Pitch = true, const bool bZ_Yaw = true, const FString& Key = "None", const int DebugIndex = 0, const FPrintSetting Settings = FPrintSetting());
+
+	UFUNCTION(BlueprintCallable, Category="Debug")
+	static void PrintHere();
+
+	UFUNCTION(BlueprintCallable, Category="Debug")
+	static void PrintWorks();
+
+	UFUNCTION(BlueprintCallable, Category="Debug")
+	static void PrintFail();
 	
 	static inline TArray<bool> BoolArray{true, true, true, true, true};
 

@@ -33,7 +33,7 @@ void ABetterDebug_HUD::DrawHUD()
 		}
 		else
 		{
-			DrawText(Message.Message, Message.Color, Message.Position.X, Message.Position.Y + Index * 15, GEngine->GetSmallFont(), Message.TextScale, true);
+			DrawText(Message.Message, Message.Color, Message.Position.X, Message.Position.Y + Index * 15, GEngine->GetLargeFont(), Message.TextScale, true);
 		}
 	}
 }
